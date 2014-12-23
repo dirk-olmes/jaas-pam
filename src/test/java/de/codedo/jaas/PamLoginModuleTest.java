@@ -2,6 +2,7 @@
 
 package de.codedo.jaas;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -54,18 +55,11 @@ public class PamLoginModuleTest extends Object
 		LoginContext context = new LoginContext(PamConfiguration.CONFIG_NAME, handler);
 		context.login();
 
-		boolean pamPrincipalFound = false;
 		Subject subject = context.getSubject();
-		for (Principal principal : subject.getPrincipals())
-		{
-			if (principal instanceof PamPrincipal)
-			{
-				pamPrincipalFound = true;
-			}
-		}
-		assertTrue(pamPrincipalFound);
+		assertTrue(pamPrincipalPresent(subject));
 
 		context.logout();
+		assertFalse(pamPrincipalPresent(subject));
 	}
 
 	private String getUser()
@@ -80,6 +74,18 @@ public class PamLoginModuleTest extends Object
 		String password = System.getProperty("validPassword");
 		assertNotNull("validPassword system property is not set", password);
 		return password;
+	}
+
+	private boolean pamPrincipalPresent(Subject subject)
+	{
+		for (Principal principal : subject.getPrincipals())
+		{
+			if (principal instanceof PamPrincipal)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@BeforeClass
