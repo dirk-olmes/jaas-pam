@@ -1,7 +1,9 @@
 JAAS LoginModule using PAM
 ==========================
 
-This is a JAAS LoginModule that uses PAM (via [libpam4j](https://github.com/kohsuke/libpam4j)).
+This is a JAAS LoginModule that uses PAM (via [libpam4j](https://github.com/kohsuke/libpam4j)). 
+
+Due to [limitations in the pam stack](http://jenkins-ci.361315.n4.nabble.com/Using-UNIX-PAM-authentication-from-a-non-root-user-td378559.html#a378563) it is not very useful, though.
 
 Usage
 -----
