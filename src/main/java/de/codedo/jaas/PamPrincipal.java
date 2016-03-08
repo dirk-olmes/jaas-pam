@@ -1,5 +1,3 @@
-// $Id$
-
 package de.codedo.jaas;
 
 import java.security.Principal;

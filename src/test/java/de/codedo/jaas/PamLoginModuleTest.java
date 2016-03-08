@@ -1,5 +1,3 @@
-// $Id$
-
 package de.codedo.jaas;
 
 import static org.junit.Assert.assertFalse;
